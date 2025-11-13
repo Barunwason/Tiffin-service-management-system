@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Home - Tiffin Management System{% endblock %}
+{% block content %}
+<div class="hero">
+    <h2>Welcome! स्वागत है</h2>
+    <p>Order delicious tiffin meals online with ease. Simple, fast, and reliable service.</p>
+    <div class="cta-buttons">
+        <a href="/register" class="btn btn-success">Create Account</a>
+        <a href="/login" class="btn">Login</a>
+    </div>
+</div>
+
+<div class="text-center">
+    <h3>Why Choose Us?</h3>
+    <div class="card-grid mt-30">
+        <div class="card">
+            <h3>🍽️ Fresh Meals</h3>
+            <p class="description">Daily prepared, healthy and delicious meals</p>
+        </div>
+        <div class="card">
+            <h3>⚡ Quick Delivery</h3>
+            <p class="description">Fast and reliable delivery service</p>
+        </div>
+        <div class="card">
+            <h3>💰 Affordable Prices</h3>
+            <p class="description">Best prices for quality meals</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

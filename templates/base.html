@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Tiffin Management System{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🍱 Tiffin Management System</h1>
+            <p>Delicious meals delivered to your door</p>
+        </div>
+
+        {% if session.user_id %}
+        <div class="navbar">
+            <div>
+                {% if session.role == 'admin' %}
+                <a href="/admin">Admin Dashboard</a>
+                <a href="/meals">Manage Meals</a>
+                {% else %}
+                <a href="/user">Dashboard</a>
+                <a href="/orders">My Orders</a>
+                {% endif %}
+            </div>
+            <div>
+                <span class="user-info">Welcome, {{ session.user_name }}!</span>
+                <a href="/logout" class="btn btn-secondary" style="margin-left: 10px;">Logout</a>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="content">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                <div class="flash {{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% endwith %}
+
+            {% block content %}
+            {% endblock %}
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2025 Tiffin Management System. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+
+</html>

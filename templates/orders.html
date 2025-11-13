@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}My Orders - Tiffin Management System{% endblock %}
+{% block content %}
+<h2 style="color: var(--primary-color); margin-bottom: 30px;">
+    {% if session.role == 'admin' %}All Orders{% else %}My Orders{% endif %}
+</h2>
+
+{% if orders %}
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                {% if session.role == 'admin' %}
+                <th>Customer</th>
+                {% endif %}
+                <th>Meal Name</th>
+                <th>Price (₹)</th>
+                <th>Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <td>#{{ order[0] }}</td>
+                {% if session.role == 'admin' %}
+                <td>{{ order[4] }}</td>
+                <td><strong>{{ order[1] }}</strong></td>
+                <td>₹{{ order[2] }}</td>
+                <td>{{ order[3] }}</td>
+                {% else %}
+                <td><strong>{{ order[1] }}</strong></td>
+                <td>₹{{ order[2] }}</td>
+                <td>{{ order[3] }}</td>
+                {% endif %}
+                <td><span class="badge badge-success">Confirmed</span></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="text-center mt-30">
+    <p style="font-size: 1.1em; color: var(--dark-color);">
+        <strong>Total Orders: {{ orders|length }}</strong>
+    </p>
+</div>
+{% else %}
+<div class="empty-state">
+    <h3>No Orders Yet</h3>
+    <p>You haven't placed any orders yet. Start ordering delicious meals now!</p>
+    {% if session.role != 'admin' %}
+    <a href="/user" class="btn btn-success mt-20">Browse Meals</a>
+    {% endif %}
+</div>
+{% endif %}
+
+<div class="mt-30">
+    {% if session.role == 'admin' %}
+    <a href="/admin" class="btn btn-secondary">← Back to Dashboard</a>
+    {% else %}
+    <a href="/user" class="btn btn-secondary">← Back to Dashboard</a>
+    {% endif %}
+</div>
+{% endblock %}

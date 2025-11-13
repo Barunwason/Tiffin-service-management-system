@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard - Tiffin Management System{% endblock %}
+{% block content %}
+<h2 style="color: var(--primary-color); margin-bottom: 10px;">Admin Dashboard</h2>
+<p style="color: #666; margin-bottom: 30px;">Manage meals and view orders</p>
+
+<div class="card-grid">
+    <div class="card">
+        <h3>🍛 Manage Meals</h3>
+        <p class="description">Add, edit, or remove meals from the menu</p>
+        <a href="/meals" class="btn btn-block mt-20">Manage Meals</a>
+    </div>
+
+    <div class="card">
+        <h3>📊 View All Orders</h3>
+        <p class="description">View all customer orders and manage them</p>
+        <a href="/orders" class="btn btn-block mt-20">View All Orders</a>
+    </div>
+</div>
+
+<div class="mt-30">
+    <h3 style="margin-bottom: 20px;">Quick Actions</h3>
+    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+        <a href="/meals" class="btn btn-success">Add New Meal</a>
+        <a href="/" class="btn btn-secondary">View Homepage</a>
+    </div>
+</div>
+{% endblock %}

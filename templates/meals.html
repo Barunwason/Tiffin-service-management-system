@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Manage Meals - Tiffin Management System{% endblock %}
+{% block content %}
+<h2 style="color: var(--primary-color); margin-bottom: 30px;">Manage Meals</h2>
+
+<div class="form-container" style="max-width: 600px;">
+    <h3 style="margin-bottom: 20px;">Add New Meal</h3>
+    <form method="POST">
+        <div class="form-group">
+            <label for="meal_name">Meal Name</label>
+            <input type="text" id="meal_name" name="meal_name" required placeholder="e.g., Dal Rice, Roti Sabzi">
+        </div>
+
+        <div class="form-group">
+            <label for="price">Price (₹)</label>
+            <input type="number" id="price" name="price" required placeholder="Enter price" min="0" step="0.01">
+        </div>
+
+        <button type="submit" class="btn btn-success btn-block">Add Meal</button>
+    </form>
+</div>
+
+<div style="margin-top: 40px;">
+    <h3 style="margin-bottom: 20px;">All Meals</h3>
+
+    {% if meals %}
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Meal Name</th>
+                    <th>Price (₹)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for meal in meals %}
+                <tr>
+                    <td>{{ meal[0] }}</td>
+                    <td><strong>{{ meal[1] }}</strong></td>
+                    <td>₹{{ meal[2] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="empty-state">
+        <h3>No Meals Added Yet</h3>
+        <p>Start by adding your first meal using the form above.</p>
+    </div>
+    {% endif %}
+</div>
+
+<div class="mt-30">
+    <a href="/admin" class="btn btn-secondary">← Back to Dashboard</a>
+</div>
+{% endblock %}

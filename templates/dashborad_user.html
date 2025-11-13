@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}User Dashboard - Tiffin Management System{% endblock %}
+{% block content %}
+<h2 style="color: var(--primary-color); margin-bottom: 10px;">Welcome, {{ session.user_name }}!</h2>
+<p style="color: #666; margin-bottom: 30px;">Browse and order your favorite meals</p>
+
+<div style="margin-bottom: 30px;">
+    <a href="/orders" class="btn btn-secondary">View My Orders</a>
+</div>
+
+<h3 style="margin-top: 40px; margin-bottom: 20px; color: var(--dark-color);">Available Meals</h3>
+
+{% if meals %}
+<div class="card-grid">
+    {% for meal in meals %}
+    <div class="card">
+        <h3>{{ meal[1] }}</h3>
+        <div class="price">₹{{ meal[2] }}</div>
+        <p class="description">Fresh and delicious meal</p>
+        <a href="/order/{{ meal[0] }}" class="btn btn-success btn-block">Order Now</a>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="empty-state">
+    <h3>No Meals Available</h3>
+    <p>Check back later for delicious meals!</p>
+</div>
+{% endif %}
+{% endblock %}
